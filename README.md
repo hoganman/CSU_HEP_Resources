@@ -1,21 +1,21 @@
 # CSU_HEP_Resources
 
 ## GPU Queues ##
-The ENS-HPC has a number of free-use and owned GPU nodes. The list of available GPU's is below with the most up-to-date list [[https://www.engr.colostate.edu/ens/info/researchcomputing/cluster/keckinfo.html|here]]
+The ENS-HPC has a number of free-use and owned GPU nodes. The list of available GPU's is below with the most up-to-date list [https://www.engr.colostate.edu/ens/info/researchcomputing/cluster/keckinfo.html](here)
 
-||'''Name''' ||'''Queues''' ||'''GPU's''' ||
-||gpu1 ||gpu.q ||Tesla K40c + '''3x''' Geforce 780 ||
-||gpu2 ||gpu.q ||'''3x''' Geforce 780 ||
-||gpu3 ||gpu.q ||'''3x''' Geforce 780 ||
-||gpu4 ||gpu.q ||'''3x''' Geforce 780 ||
-||gpu5 ||snow.q, gpu.q ||'''3x''' Geforce 780 ||
-||gpu6 ||snow.q, gpu.q ||'''3x''' Geforce 780 ||
-||gpu7 ||snow.q, gpu.q ||'''3x''' Geforce 780 ||
-||gpu8 ||snow.q, gpu.q ||Geforce Titan X + '''3x''' Geforce 780 ||
-||gpu9 ||munsky.q, gpu.q ||'''4x''' Geforce GTX 1080 ||
-||gpu10 ||munsky.q, gpu.q ||'''4x''' Geforce GTX 1080 ||
-||gpu11 ||munsky.q, gpu.q ||'''4x''' Geforce GTX 1080 ||
-||gpu12 ||munsky.q, gpu.q ||'''4x''' Geforce GTX 1080 ||
+| Name | Queues | GPU's |
+| gpu1 | gpu.q |Tesla K40c + 3x Geforce 780 |
+| gpu2 | gpu.q |3x Geforce 780 |
+| gpu3 | gpu.q |3x Geforce 780 |
+| gpu4 | gpu.q |3x Geforce 780 |
+| gpu5 | snow.q, gpu.q |3x Geforce 780 |
+| gpu6 | snow.q, gpu.q |3x Geforce 780 |
+| gpu7 | snow.q, gpu.q |3x Geforce 780 |
+| gpu8 | snow.q, gpu.q ||Geforce Titan X + 3x Geforce 780 |
+| gpu9 | munsky.q, gpu.q |4x Geforce GTX 1080 |
+| gpu10 | munsky.q, gpu.q |4x Geforce GTX 1080 |
+| gpu11 | munsky.q, gpu.q |4x Geforce GTX 1080 |
+| gpu12 | munsky.q, gpu.q |4x Geforce GTX 1080 |
 
 ## Query GPUs ##
 
