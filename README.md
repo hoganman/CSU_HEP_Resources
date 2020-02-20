@@ -3,6 +3,51 @@
 # ENS HPC 
 The CSU Engineering Network Services (ENS) High Performance Computing (HPC) cluster is a suite of compute and GPU compute nodes. For a detailed description and more tutorials, please go [https://www.engr.colostate.edu/ens/info/researchcomputing/cluster/|here]
 
+# Connecting to ENS HPC
+There are two ways to connect to the ENS HPC. Since ENS HPC is behind the Univerisity firewall, you must use the university approved VPN software called Pulse
+
+## First Things First 
+Create or edit your ~/.ssh/config file with these entries
+
+``` bash
+Host hpc
+HostName ens-hpc.engr.colostate.edu
+User <username>
+
+Host hpcsand
+HostName hpc-sandbox.engr.colostate.edu
+User <username>
+```
+
+where <username> is your username on the ENS HPC
+
+## Pulse Secure VPN 
+The Pulse Secure VPN application is a client that encrypts your network connection to simulate being on CSU campus itself. Support and download optons for Pulse is  [[https://www.acns.colostate.edu/security/|here]] under Manual Installers
+
+Installing the application using Windows and Mac OS ''should'' be easy like any proprietary OS, but this tutorial will show you how to install via Linux.
+
+ 1. Download the installer .deb or .rpm for you Linux distribution
+ 1. Use dpkg to install the application
+ 1. Install the GUI interface
+
+The following example assumes a Debian based OS with bash
+``` bash
+cd /path/to/installer/directory
+sudo dpkg -i installer.deb
+echo "export PATH=/usr/local/pulse:$PATH" >> ~/.bashrc
+echo "export LD_LIBRARY_PATH=/usr/local/pulse:$LD_LIBRARY_PATH" >> ~/.bashrc
+export PATH=$PATH:/usr/local/pulse
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/pulse
+sudo bash /usr/local/pulse/PulseClient.sh install_dependency_packages
+```
+
+The application GUI is now installed. To use the application, follow these instructions
+
+ 1. Launch Pulse Secure (pulseUi) and give it 1 minute for the first load
+ 1. Add a new connection using the plus (+) button
+ 1. Give it whatever (pet) name you want to give it and use the URL [[secure.colostate.edu]]
+ 1. Depending on Windows/Mac and Linux, you can "connect" now.
+
  ## Physics Owned Nodes 
 
 The HEPPPA group has 6 computing nodes of the 45 total. Each is a 2 x Intel Xeon 8-core processors and 64 GB RAM. In addition, we have 22 TB of data storage for physics use only
@@ -94,7 +139,7 @@ The model of the ENS-HPC cluster is that groups buy nodes into the cluster and t
 
 See [https://www.engr.colostate.edu/ens/info/researchcomputing/cluster/keckinfo.html|here] for the specific node resources like memory and CPUs.
 
- ## Compute/CPU Nodes By Ownership =
+ ## Compute/CPU Nodes By Ownership
 
 | Name | Queues | NONE | Name | Queues | NONE | Name |  Queues | NONE | Name | Queues | NONE | Name | Queues |
 | ---- | ------ | ---- | ---- | ------ | ---- | ---- | ------- | ---- | ---- | ------ | ---- | ---- | ------ |  
