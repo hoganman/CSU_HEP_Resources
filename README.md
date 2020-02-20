@@ -1,5 +1,192 @@
 # CSU_HEP_Resources
 
+# ENS HPC 
+The CSU Engineering Network Services (ENS) High Performance Computing (HPC) cluster is a suite of compute and GPU compute nodes. For a detailed description and more tutorials, please go [https://www.engr.colostate.edu/ens/info/researchcomputing/cluster/|here]
+
+ ## Physics Owned Nodes 
+
+The HEPPPA group has 6 computing nodes of the 45 total. Each is a 2 x Intel Xeon 8-core processors and 64 GB RAM. In addition, we have 22 TB of data storage for physics use only
+
+ ## Ganglia Cluster Monitoring 
+
+The HPC is monitored by ganglia. The software is used to view either live or recorded statistics covering metrics such as CPU load averages or network utilization for many nodes. The url is [http://ens-hpc.engr.colostate.edu/ganglia/]
+
+ ## Network File System 
+
+The cluster uses a network file system (NFS) allowing a user to access files over a computer network much like local storage is accessed. The host computer that redirects I/O is the "hpc-storage" node, which is NOT visible to non-admin users. The way to monitor I/O usage is to go to the [http://ens-hpc.engr.colostate.edu/ganglia/?c=ens-hpc&h=hpc-storage&m=load_one&r=hour&s=by%20name&hc=4&mc=2|ganglia hpc-storage page] and monitor the Load / Processes graph (top left). If the graph is over 12 (the number of cores), that means more the disks are too busy to accommodate all network requests and must wait for the disks to be ready for another query. 
+
+While I have not found a single good way to avoid this bottleneck, the following suggestions can help:
+ * Submit jobs with wait times so that only a certain number of jobs are running at one point
+ * Insert into your jobs a sleep time. You get all the slots available and can use a smaller submit wait time as well.
+ * Query the hpc-storage node using this python script, which takes the load average over the last minute. [attachment:gethpcstorage_usage.py]  
+
+ ## Environment Setup 
+
+ ```bash
+export UNIVA=/usr/loca/univa
+export UNIVAVERSION=8.5.5  # subject to change with updates
+
+export LD_LIBRARY_PATH=/physics/INSTALLATION/lib:/physics/INSTALLATION/lib64:/usr/lib:/usr/lib64:/usr/local/lib/:/usr/local/lib64:/usr/local2/etc/scripts/linux/X11rdp/lib:$UNIVA/$UNIVAVERSION/lib/lx-amd64:$LD_LIBRARY_PATH
+
+export C_INCLUDE_PATH=/physics/INSTALLATION/include:/usr/include:/usr/local/include/:/usr/include/libxml2:/usr/include/X11:/usr/local2/etc/scripts/linux/X11rdp/include:$UNIVA/$UNIVAVERSION/include:${C_INCLUDE_PATH}
+
+export PATH=/physics/INSTALLATION/bin:$PATH/./:/bin:/usr/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/Modules/3.2.10/bin:$UNIVA/$UNIVAVERSION/bin/lx-amd64:/usr/lib64/qt-3.3/bin:/usr/local/openmpi/1.6.4/x86_64/ib/gnu/bin
+
+export MANPATH=/physics/INSTALLATION/man:$MANPATH
+
+ ```
+
+ ## Batch Queue 
+
+The software the manages jobs is the Univa Grid Engine or UGE. The following commands will be most useful to the average user
+
+ * qsub: Submits jobs to the queue
+ * qdel: Deletes jobs on the queue. Important option is -u <username> where <username> is your username
+ * qstat: Lists jobs on the queue. Important options are -u "<username>" where <username> any username and accepts wildcards using *, -f and -r for more detailed job info
+ * qacct: Gives a detailed description of the job runtime, memory usable, and other metrics
+
+Advanced commands include qmod and qrsub. You should also familiarize yourself with the queues and nodes on the system.
+
+There also is a [attachment:UsersGuideGE.pdf|users guide document] which you may find useful.
+
+ ## Queues 
+
+A queue is a set list of compute or graphical processing unit (GPU) nodes assigned to a specific name. You can think of this like the difference between regular and express lines at the grocery store. Depending on the job specifications, your job is always assigned to a queue and a node. You can always specify both.
+
+ ## Free Use Queues =
+Below is a list of queues that you are welcome to submit freely too.
+
+
+|  Name  |  Description  |  Nodes  (format # node# except for GPUs) |
+| defaultfaculty.q | For long (>8hr) jobs | 1, 2, 3, ..., 18, 19, 40, 41, 42, 43, 44, 45 |
+| long.q | Eventual replacement for defaultfaculty.q | 1, 2, 3, ..., 18, 19, 40, 41, 42, 43, 44, 45 |
+| short.q | Short (<8hr) jobs | 27, 28, 29, 30 |
+| gpu.q | Designed for GPU jobs | gpu1, gpu2, gpu3, gpu4 |
+
+Use these lines for LONG jobs
+ ```bash
+#$ -l qname="defaultfaculty.q|long.q|physics.q"
+#$ -l hostname="node1|node2|node3|node4|node5|node6|node7|node8|node9|node10|node11|node12|node13|node14|node15|node16|node17|node18|node19|node40|node41|node42|node43|node44|node45"
+ ```
+
+
+Use these lines for SHORT jobs
+ ```bash
+#$ -l qname="short.q|physics.q"
+#$ -l hostname="node27|node28|node29|node30|node40|node41|node42|node43|node44|node45"
+ ```
+
+
+ ## Owned / Opportunistic Queues =
+
+The model of the ENS-HPC cluster is that groups buy nodes into the cluster and they have priority on those nodes.  The batch queue system is setup to kill jobs if the owners want to use them . This in the past has not always worked, but you have been warned.
+
+|  Name  |  Description  |  Nodes  (format # node# except for GPUs) |
+| physics.q | Owned by this group | 40, 41, 42, 43 , 44, 45 |
+| musky.q |  | 20, 21, 22, 23, 24, 25, 26, 32, 33, 34, ..., 38, 39 |
+| jathar.q |  | 31 |
+| snow.q | | gpu5, gpu6, gpu7, gpu8 |
+| musky-gpu.q |  | gpu9, gpu10, gpu11, gpu12 |
+
+ ## Nodes 
+
+See [https://www.engr.colostate.edu/ens/info/researchcomputing/cluster/keckinfo.html|here] for the specific node resources like memory and CPUs.
+
+ ## Compute/CPU Nodes By Ownership =
+
+| Name | Queues | - | Name | Queues | - | Name |  Queues | - | Name | Queues | - | Name | Queues |
+| ---- | ------ | - | ---- | ------ | - | ---- | ------- | - | ---- | ------ | - | ---- | ------ |  
+|node1     | defaultfaculty.q, long.q |  | node11 | defaultfaculty.q, long.q |  | node20 | munsky.q | |        |         | | node40 | physics.q, defaultfaculty.q |
+|node2     | defaultfaculty.q, long.q |  | node12 | defaultfaculty.q, long.q |  | node21 | munsky.q | |        |         | | node41 | physics.q, defaultfaculty.q |
+|node3     | defaultfaculty.q, long.q |  | node13 | defaultfaculty.q, long.q |  | node22 | munsky.q | | node31 | munsky.q | | node42 | physics.q, defaultfaculty.q |
+|node4     | defaultfaculty.q, long.q |  | node14 | defaultfaculty.q, long.q |  | node23 | munsky.q | | node32 | munsky.q | | node43 | physics.q, defaultfaculty.q |
+|node5     | defaultfaculty.q, long.q |  | node15 | defaultfaculty.q, long.q |  | node24 | munsky.q | | node33 | munsky.q | | node44 | physics.q, defaultfaculty.q |
+|node6     | defaultfaculty.q, long.q |  | node16 | defaultfaculty.q, long.q |  | node25 | munsky.q | | node34 | munsky.q | | node45 | physics.q, defaultfaculty.q |
+|node7     | defaultfaculty.q, long.q |  | node17 | defaultfaculty.q, long.q |  | node25 | munsky.q | | node35 | munsky.q | | node27 | short.q |
+|node8     | defaultfaculty.q, long.q |  | node18 | defaultfaculty.q, long.q |  | node26 | munsky.q | | node36 | munsky.q | | node28 |  short.q  |
+|node9     | defaultfaculty.q, long.q |  | node19 | defaultfaculty.q, long.q |  |        |          | | node37 | munsky.q | | node29 |  short.q |
+|node10    | defaultfaculty.q, long.q |  |        |                          |  |        |         | | node38 | munsky.q | | node30 |  short.q |
+|          |                          |  |        |                          |  |        |         | | node39 | munsky.q | |       |           |
+
+ ## Graphics/GPU Nodes By Ownership =
+
+| Name | Queues | GPU's |
+| ---- | ------ | ----- |
+| gpu1     | gpu.q      | Tesla K40c +  3x  Geforce 780 |
+| gpu2     | gpu.q      |  3x  Geforce 780 |
+| gpu3     | gpu.q      |  3x  Geforce 780 |
+| gpu4     | gpu.q      |  3x  Geforce 780 |
+| gpu5     | snow.q, gpu.q |  3x  Geforce 780 |
+| gpu6     | snow.q, gpu.q  |  3x  Geforce 780 |
+| gpu7     | snow.q, gpu.q  |  3x  Geforce 780 |
+| gpu8     | snow.q, gpu.q | Geforce Titan X +  3x  Geforce 780 |
+| gpu9     | munsky.q, gpu.q |  4x  Geforce GTX 1080 |
+| gpu10    | munsky.q, gpu.q |  4x  Geforce GTX 1080 |
+| gpu11    | munsky.q, gpu.q |  4x  Geforce GTX 1080 |
+| gpu12    | munsky.q, gpu.q |  4x  Geforce GTX 1080 |
+
+ ## Batch Queue Setup on Compute Nodes 
+
+To run jobs, it is most convenient to write a script with all the commands and options set inside it. Sample setups are below.
+
+ ## Sample Script =
+
+Create a file called script.sh with the following contents
+
+ ```bash
+#!/bin/bash
+
+#merge stdout and stderr into one file
+#$ -j yes
+# define the working directory where the job runs, do not use this dir in general
+#$ -wd /physics/home
+# where to store stdout, do not use this dir in general
+#$ -o /physics/home
+# define which queues to work with exclusively. The "|" concatenates multiple queues
+#$ -l qname="short.q|defaultfaculty.q"
+# what is the length of the job in HH:MM:SS
+#$ -l h_cpu=:1:
+# how much memory will the job need, use M for megabytes and G for gigabytes
+#$ -l h_data=500M
+echo "Hello world!"
+ ```
+which is submitted using "qsub script.sh" (no quotes)
+
+ ## Other Job Options =
+
+The full set of options available on the queue can be searched using the man pages
+ * man qsub : lists most options for jobs except job resources (see man complex)
+ * man complex : lists all the options for job resource specifications like job time (see man sge_types for how to describe resources)
+ * man sge_types : lists accepted attributes for job resources
+ * man qstat : lists how to view currently running jobs
+
+ ```bash
+# specify specifically which nodes to use with "|" concatenating multiple nodes
+#$ -l hostname="node1|node2"
+# set the job priority to -10 (cannot go above 0 unless su)
+#$ -p -10
+ ```
+
+ ## Parallel Processing =
+
+If you need to use multithreading on your jobs with OpenMP for example, use these options
+
+ ```bash
+# specify the parallel/multithread processing environment as OpenMP using 16 threads
+#$ -pe OpenMP 16
+# export a environment variable that persists in the job
+#$ -v OMP_NUM_THREADS=16
+ ```
+
+MPI is also supported.
+
+ ## Physics Software 
+
+Currently the necessary libraries for ROOT v5r34 and "grid" access under /physics/software
+
+ ## Problems 
+
+
 ## GPU Queues ##
 The ENS-HPC has a number of free-use and owned GPU nodes. The list of available GPU's is below with the most up-to-date list [https://www.engr.colostate.edu/ens/info/researchcomputing/cluster/keckinfo.html](here)
 
