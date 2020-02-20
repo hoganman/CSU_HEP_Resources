@@ -155,7 +155,7 @@ See [https://www.engr.colostate.edu/ens/info/researchcomputing/cluster/keckinfo.
 |node10    | defaultfaculty.q, long.q |  |        |                          |  |        |         | | node38 | munsky.q | | node30 |  short.q |
 |          |                          |  |        |                          |  |        |         | | node39 | munsky.q | |       |           |
 
- ## Graphics/GPU Nodes By Ownership =
+ ## Graphics/GPU Nodes By Ownership
 
 | Name | Queues | GPU's |
 | ---- | ------ | ----- |
@@ -176,7 +176,7 @@ See [https://www.engr.colostate.edu/ens/info/researchcomputing/cluster/keckinfo.
 
 To run jobs, it is most convenient to write a script with all the commands and options set inside it. Sample setups are below.
 
- ## Sample Script =
+ ## Sample Script
 
 Create a file called script.sh with the following contents
 
@@ -214,7 +214,7 @@ The full set of options available on the queue can be searched using the man pag
 #$ -p -10
  ```
 
- ## Parallel Processing =
+ ## Parallel Processing
 
 If you need to use multithreading on your jobs with OpenMP for example, use these options
 
@@ -235,7 +235,7 @@ Currently the necessary libraries for ROOT v5r34 and "grid" access under /physic
 
 
 ## GPU Queues ##
-The ENS-HPC has a number of free-use and owned GPU nodes. The list of available GPU's is below with the most up-to-date list [https://www.engr.colostate.edu/ens/info/researchcomputing/cluster/keckinfo.html](here)
+The ENS-HPC has a number of free-use and owned GPU nodes. The list of available GPU's is below with the most up-to-date list [https://www.engr.colostate.edu/ens/info/researchcomputing/cluster/keckinfo.html]
 
 | Name  | Queues        | GPU's                            |
 | ----- | ------------- | -------------------------------- |
@@ -301,7 +301,7 @@ If you are only going for one specific gpu then I would try the environment vari
 
 ## CUDA_VISIBLE_DEVICES ##
 
-Originally from [[http://www.acceleware.com/blog/cudavisibledevices-masking-gpus]]
+Originally from [http://www.acceleware.com/blog/cudavisibledevices-masking-gpus]
 
 CUDA_VISIBLE_DEVICES – Masking GPUs
 Submitted by Chris Mason on Wed, 2013-02-20 10:51
@@ -324,8 +324,6 @@ To determine the device ID for the available hardware in your system, you can ru
 Chris Mason
 
 ## Using CUDA
-
-Here are a couple guides for [[attachment:gpu_computing_intro.pdf|GPU computing]] and [[attachment:cuda_intro.pdf|CUDA]]
 
 ### Example Written by Jackie Schwehr
 
