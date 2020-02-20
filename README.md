@@ -53,11 +53,12 @@ There also is a [attachment:UsersGuideGE.pdf|users guide document] which you may
 
 A queue is a set list of compute or graphical processing unit (GPU) nodes assigned to a specific name. You can think of this like the difference between regular and express lines at the grocery store. Depending on the job specifications, your job is always assigned to a queue and a node. You can always specify both.
 
- ## Free Use Queues =
+ ## Free Use Queues
 Below is a list of queues that you are welcome to submit freely too.
 
 
 |  Name  |  Description  |  Nodes  (format # node# except for GPUs) |
+| ------ | ------------- | ---------------------------------------- |
 | defaultfaculty.q | For long (>8hr) jobs | 1, 2, 3, ..., 18, 19, 40, 41, 42, 43, 44, 45 |
 | long.q | Eventual replacement for defaultfaculty.q | 1, 2, 3, ..., 18, 19, 40, 41, 42, 43, 44, 45 |
 | short.q | Short (<8hr) jobs | 27, 28, 29, 30 |
@@ -77,11 +78,12 @@ Use these lines for SHORT jobs
  ```
 
 
- ## Owned / Opportunistic Queues =
+ ## Owned / Opportunistic Queues
 
 The model of the ENS-HPC cluster is that groups buy nodes into the cluster and they have priority on those nodes.  The batch queue system is setup to kill jobs if the owners want to use them . This in the past has not always worked, but you have been warned.
 
 |  Name  |  Description  |  Nodes  (format # node# except for GPUs) |
+| ------ | ------------- | ---------------------------------------- |
 | physics.q | Owned by this group | 40, 41, 42, 43 , 44, 45 |
 | musky.q |  | 20, 21, 22, 23, 24, 25, 26, 32, 33, 34, ..., 38, 39 |
 | jathar.q |  | 31 |
@@ -94,8 +96,8 @@ See [https://www.engr.colostate.edu/ens/info/researchcomputing/cluster/keckinfo.
 
  ## Compute/CPU Nodes By Ownership =
 
-| Name | Queues | - | Name | Queues | - | Name |  Queues | - | Name | Queues | - | Name | Queues |
-| ---- | ------ | - | ---- | ------ | - | ---- | ------- | - | ---- | ------ | - | ---- | ------ |  
+| Name | Queues | NONE | Name | Queues | NONE | Name |  Queues | NONE | Name | Queues | NONE | Name | Queues |
+| ---- | ------ | ---- | ---- | ------ | ---- | ---- | ------- | ---- | ---- | ------ | ---- | ---- | ------ |  
 |node1     | defaultfaculty.q, long.q |  | node11 | defaultfaculty.q, long.q |  | node20 | munsky.q | |        |         | | node40 | physics.q, defaultfaculty.q |
 |node2     | defaultfaculty.q, long.q |  | node12 | defaultfaculty.q, long.q |  | node21 | munsky.q | |        |         | | node41 | physics.q, defaultfaculty.q |
 |node3     | defaultfaculty.q, long.q |  | node13 | defaultfaculty.q, long.q |  | node22 | munsky.q | | node31 | munsky.q | | node42 | physics.q, defaultfaculty.q |
