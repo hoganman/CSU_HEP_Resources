@@ -56,7 +56,7 @@ The application GUI is now installed. To use the application, follow these instr
 
  1. Launch Pulse Secure (pulseUi) and give it 1 minute for the first load
  1. Add a new connection using the plus (+) button
- 1. Give it whatever (pet) name you want to give it and use the URL https://secure.colostate.edu
+ 1. Give it whatever (pet) name you want to give it and use the URL https://secure.colostate.edu/2fa for two-factor authenication
  1. Depending on Windows/Mac and Linux, you can "connect" now.
 
  ## Physics Owned Nodes 
