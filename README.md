@@ -1,7 +1,7 @@
 # CSU_HEP_Resources
 
 # ENS HPC 
-The CSU Engineering Network Services (ENS) High Performance Computing (HPC) cluster is a suite of compute and GPU compute nodes. For a detailed description and more tutorials, please go [https://www.engr.colostate.edu/ens/info/researchcomputing/cluster/|here]
+The CSU Engineering Network Services (ENS) High Performance Computing (HPC) cluster is a suite of compute and GPU compute nodes. For a detailed description and more tutorials, please go [https://www.engr.colostate.edu/ens/info/researchcomputing/cluster/]
 
 # Connecting to ENS HPC
 There are two ways to connect to the ENS HPC. Since ENS HPC is behind the Univerisity firewall, you must use the university approved VPN software called Pulse
@@ -22,7 +22,7 @@ User <username>
 where <username> is your username on the ENS HPC
 
 ## Pulse Secure VPN 
-The Pulse Secure VPN application is a client that encrypts your network connection to simulate being on CSU campus itself. Support and download optons for Pulse is  [[https://www.acns.colostate.edu/security/|here]] under Manual Installers
+The Pulse Secure VPN application is a client that encrypts your network connection to simulate being on CSU campus itself. Support and download optons for Pulse is  [https://www.acns.colostate.edu/security/] under Manual Installers
 
 Installing the application using Windows and Mac OS ''should'' be easy like any proprietary OS, but this tutorial will show you how to install via Linux.
 
@@ -45,7 +45,7 @@ The application GUI is now installed. To use the application, follow these instr
 
  1. Launch Pulse Secure (pulseUi) and give it 1 minute for the first load
  1. Add a new connection using the plus (+) button
- 1. Give it whatever (pet) name you want to give it and use the URL [[secure.colostate.edu]]
+ 1. Give it whatever (pet) name you want to give it and use the URL [https://secure.colostate.edu]
  1. Depending on Windows/Mac and Linux, you can "connect" now.
 
  ## Physics Owned Nodes 
@@ -58,12 +58,12 @@ The HPC is monitored by ganglia. The software is used to view either live or rec
 
  ## Network File System 
 
-The cluster uses a network file system (NFS) allowing a user to access files over a computer network much like local storage is accessed. The host computer that redirects I/O is the "hpc-storage" node, which is NOT visible to non-admin users. The way to monitor I/O usage is to go to the [http://ens-hpc.engr.colostate.edu/ganglia/?c=ens-hpc&h=hpc-storage&m=load_one&r=hour&s=by%20name&hc=4&mc=2|ganglia hpc-storage page] and monitor the Load / Processes graph (top left). If the graph is over 12 (the number of cores), that means more the disks are too busy to accommodate all network requests and must wait for the disks to be ready for another query. 
+The cluster uses a network file system (NFS) allowing a user to access files over a computer network much like local storage is accessed. The host computer that redirects I/O is the "hpc-storage" node, which is NOT visible to non-admin users. The way to monitor I/O usage is to go to the [http://ens-hpc.engr.colostate.edu/ganglia/?c=ens-hpc&h=hpc-storage&m=load_one&r=hour&s=by%20name&hc=4&mc=2] and monitor the Load / Processes graph (top left). If the graph is over 12 (the number of cores), that means more the disks are too busy to accommodate all network requests and must wait for the disks to be ready for another query. 
 
 While I have not found a single good way to avoid this bottleneck, the following suggestions can help:
  * Submit jobs with wait times so that only a certain number of jobs are running at one point
  * Insert into your jobs a sleep time. You get all the slots available and can use a smaller submit wait time as well.
- * Query the hpc-storage node using this python script, which takes the load average over the last minute. [attachment:gethpcstorage_usage.py]  
+ * Query the hpc-storage node using this python script, which takes the load average over the last minute. [/physics/software/bin/gethpcstorage_usage.py]  
 
  ## Environment Setup 
 
@@ -91,8 +91,6 @@ The software the manages jobs is the Univa Grid Engine or UGE. The following com
  * qacct: Gives a detailed description of the job runtime, memory usable, and other metrics
 
 Advanced commands include qmod and qrsub. You should also familiarize yourself with the queues and nodes on the system.
-
-There also is a [attachment:UsersGuideGE.pdf|users guide document] which you may find useful.
 
  ## Queues 
 
