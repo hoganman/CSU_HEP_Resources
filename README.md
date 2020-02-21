@@ -2,7 +2,7 @@
 
 ## Data Storage
 
-There is a RAID storage for HEP users. Add to your ```.ssh/config``` file the following lines
+There is a RAID storage for HEP users. Contact the system admin to add yourself to the server. Once added, add this to your ```.ssh/config``` file
 
 ```
 Host hep
